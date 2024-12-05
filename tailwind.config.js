@@ -19,7 +19,26 @@ module.exports = {
       },
       colors: {
         customGrey: "rgba(203, 213, 225, 1)",
-        customBlue:"rgba(0, 46, 80, 1)"
+        customBlue: "rgba(0, 46, 80, 1)",
+      },
+      animation: {
+        "slide-in-right": "slideInRight 0.8s ease-out forwards",
+        "slide-in-left": "slideInLeft 0.8s ease-out forwards",
+        "fade-in-slow": "fadeInSlow 1.5s ease-out forwards",
+      },
+      keyframes: {
+        slideInRight: {
+          "0%": { transform: "translateX(100px)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        slideInLeft: {
+          "0%": { transform: "translateX(-100px)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+        fadeInSlow: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
     },
   },
