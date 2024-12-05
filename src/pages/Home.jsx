@@ -24,7 +24,7 @@ const Home = () => {
     // Create a new IntersectionObserver instance
     const newObserver = new IntersectionObserver(handleIntersection, {
       rootMargin: "0px",
-      threshold: 0.5, // Trigger when 50% of the element is visible
+      threshold: 0.1, // Trigger when 50% of the element is visible
     });
 
     // Set the observer to state to use it for future updates
