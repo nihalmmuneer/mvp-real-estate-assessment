@@ -133,7 +133,7 @@ const Projects = () => {
           </button>
         </div>
 
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex md:flex-row flex-col md:gap-0 gap-2 items-center justify-between mt-6">
           <p>Don’t miss out, browse all of our new projects now and see what your future could look like!</p>
           <button type="button" className="border bg-transparent py-2 px-5 rounded-full text-sm border-customBlue">See More</button>
         </div>
