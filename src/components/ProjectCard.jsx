@@ -22,31 +22,31 @@ const ProjectCard = ({
       />
     </div>
     <div className="border-b p-2 flex flex-col gap-1">
-      <h2 className="font-semibold text-lg md:text-xl">{projectName}</h2>
-      <p className="text-xs text-gray-500">
+      <h2 className="font-semibold text-lg 2xl:text-3xl md:text-2xl">{projectName}</h2>
+      <p className="text-base 2xl:text-2xl text-gray-500">
         By{" "}
         <a href="shoba" className="underline text-teal-500">
           {developer}
         </a>
       </p>
-      <p className="text-gray-400 text-xs">Location: {location}</p>
+      <p className="text-gray-400 text-base 2xl:text-2xl">Location: {location}</p>
     </div>
     <div className="flex gap-3 p-2 border-b flex-wrap">
       <div className="text-teal-400 flex items-center gap-1">
         <img src="/Apartment.png" alt="apartments" className="w-5 h-5" />
-        <span className="text-xs font-semibold">APARTMENTS</span>
+        <span className="text-base 2xl:text-2xl font-semibold">APARTMENTS</span>
       </div>
       <div className="text-teal-400 flex items-center gap-1">
         <img src="/Duplexes.png" alt="duplexes" className="w-5 h-5" />
-        <span className="font-semibold text-xs">DUPLEXES</span>
+        <span className="font-semibold  2xl:text-2xl text-base">DUPLEXES</span>
       </div>
       <div className="text-teal-400 flex items-center gap-1">
         <img src="/Penthouse.png" alt="penthouses" className="w-5 h-5" />
-        <span className="text-xs font-semibold">PENTHOUSES</span>
+        <span className="text-base 2xl:text-2xl font-semibold">PENTHOUSES</span>
       </div>
     </div>
     <div className="flex items-center gap-3 p-2 border-b">
-      <div className="flex flex-col text-sm gap-1">
+      <div className="flex flex-col text-base 2xl:text-2xl gap-1">
         <div className="flex items-center gap-1">
           <img src="/starting-price.png" alt="starting-price" className="w-5 h-5" />
           <span>Starting Price:</span>
@@ -64,7 +64,7 @@ const ProjectCard = ({
           <span>Area:</span>
         </div>
       </div>
-      <div className="flex flex-col gap-1 text-sm">
+      <div className="flex flex-col gap-1 text-base 2xl:text-2xl">
         <h2>{startingPrice}</h2>
         <h2>{handoverDate}</h2>
         <h2>{paymentPlan}</h2>
@@ -78,14 +78,14 @@ const ProjectCard = ({
           className="text-white p-3 rounded-xl bg-customBlue flex items-center gap-1"
         >
           <CiMail className="w-6 h-6" />
-          <span className="text-sm">Enquire now</span>
+          <span className="text-base 2xl:text-2xl">Enquire now</span>
         </button>
         <button
           type="button"
           className="text-white p-3 bg-customBlue rounded-xl flex items-center gap-1"
         >
           <MdOutlineWhatsapp className="w-6 h-6" />
-          <span className="text-sm">Whatsapp</span>
+          <span className="text-base 2xl:text-2xl">Whatsapp</span>
         </button>
       </div>
     </div>
