@@ -31,18 +31,18 @@ const ProjectCard = ({
       </p>
       <p className="text-gray-400 text-xs">Location: {location}</p>
     </div>
-    <div className="flex gap-3 p-2 border-b flex-wrap">
+    <div className="flex gap-3 p-2 border-b xl:flex-nowrap flex-wrap">
       <div className="text-teal-400 flex items-center gap-1">
-        <img src="/Apartment.png" alt="apartments" className="w-4 h-4" />
-        <span className="text-xs font-semibold">APARTMENTS</span>
+        <img src="/Apartment.png" alt="apartments" className="w-3 h-3" />
+        <span className="text-[11px] font-semibold">APARTMENTS</span>
       </div>
       <div className="text-teal-400 flex items-center gap-1">
-        <img src="/Duplexes.png" alt="duplexes" className="w-4 h-4" />
-        <span className="font-semibold  text-xs">DUPLEXES</span>
+        <img src="/Duplexes.png" alt="duplexes" className="w-3 h-3" />
+        <span className="font-semibold  text-[11px]">DUPLEXES</span>
       </div>
       <div className="text-teal-400 flex items-center gap-1">
-        <img src="/Penthouse.png" alt="penthouses" className="w-4 h-4" />
-        <span className="text-xs font-semibold">PENTHOUSES</span>
+        <img src="/Penthouse.png" alt="penthouses" className="w-3 h-3" />
+        <span className="text-[11px]">PENTHOUSES</span>
       </div>
     </div>
     <div className="flex items-center gap-3 p-2 border-b">
