@@ -11,7 +11,7 @@ const Header = () => {
           <img src="/header-logo.png" alt="header-logo" className="h-10 md:h-[40px]" />
         </div>
         <div className="hidden md:inline-block">
-          <ul className="font-davidLibre flex gap-6 md:gap-8 text-xs md:text-xl">
+          <ul className="font-davidLibre flex gap-6 md:gap-8 text-xs">
             <li>Properties</li>
             <li>Projects</li>
             <li>Communities</li>

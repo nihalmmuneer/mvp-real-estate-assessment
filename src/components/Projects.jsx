@@ -44,6 +44,16 @@ const projects = [
     paymentPlan: "30:40:30",
     area: "4k - 10k Sqft",
   },
+  {
+    projectImage: "/project-two.png",
+    projectName: "Project Name 2",
+    developer: "SOBHA Reality",
+    location: "city, area",
+    startingPrice: "AED 37,000,000",
+    handoverDate: "AUG 2023",
+    paymentPlan: "30:40:30",
+    area: "4k - 10k Sqft",
+  },
 ];
 
 const Projects = () => {
@@ -92,15 +102,15 @@ const Projects = () => {
     <div className="min-h-fit p-6 ">
       <div>
         <div className="flex md:flex-row flex-col md:gap-0 gap-4 justify-between items-center">
-          <h1 className="text-2xl md:text-2xl lg:text-2xl font-santoshi">New Projects</h1>
-          <p className="text-sm md:text-base xl:text-lg lg:text-base font-santoshi text-black/50">
+          <h1 className="text-xl ">New Projects</h1>
+          <p className="text-xs  text-black/50">
             We have a magnificent selection of upcoming and new projects that
             will open your <br /> eyes to the future’s potential. These
             properties make tomorrow worth waiting for.
           </p>
         </div>
 
-        <div className="relative">
+        <div className="relative pt-5">
           <div
             ref={scrollRef}
             className="flex gap-4 overflow-x-auto scrollbar-thin pt-2 pb-6 scrollbar-thumb-gray-300"
@@ -109,7 +119,7 @@ const Projects = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="flex-none w-full sm:w-[calc(100%-16px)] md:w-[calc(50%-16px)]" // Adjust widths based on screen size
+                className="flex-none w-full sm:w-[calc(90%-16px)] md:w-[calc(50%-10px)] lg:w-[calc(28%-16px)]" // Adjust widths based on screen size
               >
                 <ProjectCard {...project} />
               </div>

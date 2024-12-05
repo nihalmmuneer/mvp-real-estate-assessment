@@ -6,6 +6,7 @@ const Plan = () => {
   const scrollRef = useRef(null); 
   const [isPrevDisabled, setIsPrevDisabled] = useState(true);
   const [isNextDisabled, setIsNextDisabled] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
 
   const items = [
     { src: "/off-plan.png", label: "Off-Plan" },
@@ -42,30 +43,43 @@ const Plan = () => {
       setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
     };
 
+    const checkOverflow = () => {
+      const scrollWidth = scrollRef.current.scrollWidth;
+      const offsetWidth = scrollRef.current.offsetWidth;
+      setIsOverflowing(scrollWidth > offsetWidth); // Check if the content overflows
+    };
+
     const scrollContainer = scrollRef.current;
     scrollContainer.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", checkOverflow);
 
-    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+    checkOverflow(); // Initial check
+
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", checkOverflow);
+    };
   }, []);
 
   return (
-    <div className="relative mt-6  bg-white">
+    <div className="relative mt-6 bg-white">
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto gap-6 pt-2 pb-10 scrollbar-thin scrollbar-thumb-gray-300 
-          md:overflow-x-auto md:gap-6 2xl:flex 2xl:justify-center 2xl:gap-12"
+        className={`flex overflow-x-auto pt-2 pb-10 scrollbar-thin scrollbar-thumb-gray-300 gap-10 ${
+          !isOverflowing ? "justify-center" : ""
+        }`}
       >
         {items.map((item, index) => (
           <div
             key={index}
-            className="flex items-center flex-col shadow-md p-6 whitespace-nowrap"
+            className="flex items-center flex-col gap-3 shadow-md py-3 px-8 rounded-lg whitespace-nowrap"
           >
             <img
               src={item.src}
               alt={item.label}
-              className="w-12 sm:w-14 md:w-16 lg:w-18 xl:w-20 2xl:w-24"
+              className="w-8"
             />
-            <span className="font-davidLibre text-sm sm:text-base lg:text-lg xl:text-xl 2xl:text-2xl text-center">
+            <span className="font-davidLibre text-xs text-center text-black/50">
               {item.label}
             </span>
           </div>

@@ -14,7 +14,7 @@ const ProjectCard = ({
 }) => (
   <div className="border p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
     <div className="relative">
-      <img src={projectImage} alt="project" className="w-full h-auto rounded-lg" />
+      <img src={projectImage} alt="project" className="w-full h-auto  object-cover rounded-lg" />
       <img
         src="/shoba.png"
         alt="shoba-icon"
@@ -22,49 +22,49 @@ const ProjectCard = ({
       />
     </div>
     <div className="border-b p-2 flex flex-col gap-1">
-      <h2 className="font-semibold text-lg 2xl:text-3xl md:text-2xl">{projectName}</h2>
-      <p className="text-base 2xl:text-2xl text-gray-500">
+      <h2 className="font-semibold ">{projectName}</h2>
+      <p className="text-xs text-gray-500">
         By{" "}
-        <a href="shoba" className="underline text-teal-500">
+        <a href="shoba" className="underline text-teal-500 text-xs" >
           {developer}
         </a>
       </p>
-      <p className="text-gray-400 text-base 2xl:text-2xl">Location: {location}</p>
+      <p className="text-gray-400 text-xs">Location: {location}</p>
     </div>
     <div className="flex gap-3 p-2 border-b flex-wrap">
       <div className="text-teal-400 flex items-center gap-1">
-        <img src="/Apartment.png" alt="apartments" className="w-5 h-5" />
-        <span className="text-base 2xl:text-2xl font-semibold">APARTMENTS</span>
+        <img src="/Apartment.png" alt="apartments" className="w-4 h-4" />
+        <span className="text-xs font-semibold">APARTMENTS</span>
       </div>
       <div className="text-teal-400 flex items-center gap-1">
-        <img src="/Duplexes.png" alt="duplexes" className="w-5 h-5" />
-        <span className="font-semibold  2xl:text-2xl text-base">DUPLEXES</span>
+        <img src="/Duplexes.png" alt="duplexes" className="w-4 h-4" />
+        <span className="font-semibold  text-xs">DUPLEXES</span>
       </div>
       <div className="text-teal-400 flex items-center gap-1">
-        <img src="/Penthouse.png" alt="penthouses" className="w-5 h-5" />
-        <span className="text-base 2xl:text-2xl font-semibold">PENTHOUSES</span>
+        <img src="/Penthouse.png" alt="penthouses" className="w-4 h-4" />
+        <span className="text-xs font-semibold">PENTHOUSES</span>
       </div>
     </div>
     <div className="flex items-center gap-3 p-2 border-b">
       <div className="flex flex-col text-base 2xl:text-2xl gap-1">
         <div className="flex items-center gap-1">
-          <img src="/starting-price.png" alt="starting-price" className="w-5 h-5" />
-          <span>Starting Price:</span>
+          <img src="/starting-price.png" alt="starting-price" className="w-4 h-4" />
+          <span className="text-xs">Starting Price:</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src="/starting-price.png" alt="handover" className="w-5 h-5" />
-          <span>Handover:</span>
+          <img src="/starting-price.png" alt="handover" className="w-4 h-4" />
+          <span className="text-xs">Handover:</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src="/payment.png" alt="payment-plan" className="w-5 h-5" />
-          <span>Payment Plan:</span>
+          <img src="/payment.png" alt="payment-plan" className="w-4 h-4" />
+          <span className="text-xs">Payment Plan:</span>
         </div>
         <div className="flex items-center gap-1">
-          <img src="/area.png" alt="area" className="w-5 h-5" />
-          <span>Area:</span>
+          <img src="/area.png" alt="area" className="w-4 h-4" />
+          <span className="text-xs">Area:</span>
         </div>
       </div>
-      <div className="flex flex-col gap-1 text-base 2xl:text-2xl">
+      <div className="flex flex-col gap-1 text-xs">
         <h2>{startingPrice}</h2>
         <h2>{handoverDate}</h2>
         <h2>{paymentPlan}</h2>
@@ -75,17 +75,17 @@ const ProjectCard = ({
       <div className="flex items-center gap-2 flex-wrap">
         <button
           type="button"
-          className="text-white p-3 rounded-xl bg-customBlue flex items-center gap-1"
+          className="text-white justify-center text-center flex-1 px-5 py-4 rounded-lg bg-customBlue flex items-center gap-1"
         >
-          <CiMail className="w-6 h-6" />
-          <span className="text-base 2xl:text-2xl">Enquire now</span>
+          <CiMail className="w-4 h-4" />
+          <span className="text-xs whitespace-nowrap">Enquire now</span>
         </button>
         <button
           type="button"
-          className="text-white p-3 bg-customBlue rounded-xl flex items-center gap-1"
+          className="text-white text-center justify-center flex-1 px-5 py-4 rounded-lg bg-customBlue flex items-center gap-1"
         >
-          <MdOutlineWhatsapp className="w-6 h-6" />
-          <span className="text-base 2xl:text-2xl">Whatsapp</span>
+          <MdOutlineWhatsapp className="w-4 h-4" />
+          <span className="text-xs">Whatsapp</span>
         </button>
       </div>
     </div>
