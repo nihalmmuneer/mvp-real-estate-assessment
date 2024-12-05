@@ -49,7 +49,7 @@ const Info = () => {
             </div>
             <div className="relative px-10">
               <div className="border-b-2 pt-8"></div>
-              <button className="bg-teal-500 absolute top-[12px] left-[40%] text-white px-4 py-2 rounded-md flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-teal-300">
+              <button className="bg-teal-500 absolute top-[12px] left-[35%] md:left-[40%] text-white px-4 py-2 rounded-md flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-teal-300">
                 Preferences
                 <svg
                   className="w-4 h-4 ml-2 transform transition-transform duration-200"
