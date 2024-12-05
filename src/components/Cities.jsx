@@ -30,21 +30,41 @@ const Cities = () => {
     }
   };
 
+  const checkScrollPosition = () => {
+    const scrollLeft = scrollRef.current.scrollLeft;
+    const scrollWidth = scrollRef.current.scrollWidth;
+    const offsetWidth = scrollRef.current.offsetWidth;
+
+    setIsPrevDisabled(scrollLeft === 0);
+    setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
+  };
+
+  const debounceResize = () => {
+    clearTimeout(window.debounceResizeTimeout);
+    window.debounceResizeTimeout = setTimeout(() => {
+      checkScrollPosition(); // Recheck scroll position after resize
+    }, 150); // Debounce time to avoid too many recalculations during resize
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const scrollWidth = scrollRef.current.scrollWidth;
-      const offsetWidth = scrollRef.current.offsetWidth;
-
-      setIsPrevDisabled(scrollLeft === 0);
-      setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
+      requestAnimationFrame(checkScrollPosition);
     };
 
+    // Attach event listeners
     const scrollContainer = scrollRef.current;
     scrollContainer.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", debounceResize);
 
-    return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, []);
+    // Initial check
+    checkScrollPosition();
+
+    return () => {
+      // Clean up event listeners
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", debounceResize);
+    };
+  }, []); // Empty dependency array ensures effect runs only once after component mounts
 
   return (
     <div className="relative min-h-fit bg-white">

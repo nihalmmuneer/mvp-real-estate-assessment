@@ -33,54 +33,48 @@ const Plan = () => {
     }
   };
 
+  const checkScrollPosition = () => {
+    const scrollLeft = scrollRef.current.scrollLeft;
+    const scrollWidth = scrollRef.current.scrollWidth;
+    const offsetWidth = scrollRef.current.offsetWidth;
+
+    setIsPrevDisabled(scrollLeft === 0);
+    setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
+  };
+
+  const checkOverflow = () => {
+    const scrollWidth = scrollRef.current.scrollWidth;
+    const offsetWidth = scrollRef.current.offsetWidth;
+    setIsOverflowing(scrollWidth > offsetWidth); // Check if the content overflows
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const scrollWidth = scrollRef.current.scrollWidth;
-      const offsetWidth = scrollRef.current.offsetWidth;
-
-      setIsPrevDisabled(scrollLeft === 0);
-      setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
+      requestAnimationFrame(checkScrollPosition);
     };
 
-    const checkOverflow = () => {
-      const scrollWidth = scrollRef.current.scrollWidth;
-      const offsetWidth = scrollRef.current.offsetWidth;
-      setIsOverflowing(scrollWidth > offsetWidth); // Check if the content overflows
+    const resizeHandler = () => {
+      requestAnimationFrame(() => {
+        checkOverflow();
+        checkScrollPosition();
+      });
     };
 
+    // Attach event listeners
     const scrollContainer = scrollRef.current;
     scrollContainer.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", resizeHandler);
 
-    // Initial check for overflow
+    // Initial checks
     checkOverflow();
-
-    const debounceResize = () => {
-      clearTimeout(window.debounceResizeTimeout);
-      window.debounceResizeTimeout = setTimeout(() => {
-        checkOverflow(); // Check for overflow after resize
-      }, 150); // Debounce time in ms
-    };
-
-    // Add resize event listener with debounce
-    window.addEventListener("resize", debounceResize);
+    checkScrollPosition();
 
     return () => {
+      // Clean up event listeners
       scrollContainer.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", debounceResize);
+      window.removeEventListener("resize", resizeHandler);
     };
-  }, []); // Empty dependency array ensures the effect only runs once
-
-  useEffect(() => {
-    // Recheck overflow and scroll state on initial load
-    if (scrollRef.current) {
-      const scrollLeft = scrollRef.current.scrollLeft;
-      const scrollWidth = scrollRef.current.scrollWidth;
-      const offsetWidth = scrollRef.current.offsetWidth;
-      setIsPrevDisabled(scrollLeft === 0);
-      setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
-    }
-  }, [isOverflowing]); // This effect runs when `isOverflowing` changes
+  }, []); // Empty dependency array ensures effect runs only once after the component mounts
 
   return (
     <div className="relative mt-6 bg-white">
