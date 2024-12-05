@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Cities from "../components/Cities";
 import Plan from "../components/Plan";
@@ -8,29 +8,62 @@ import Experts from "../components/Experts";
 import Info from "../components/Info";
 
 const Home = () => {
+  const [observer, setObserver] = useState(null);
+
+  // Function to add animation class when an element enters the viewport
   const handleIntersection = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add(entry.target.dataset.animation); 
-        observer.unobserve(entry.target); 
+        entry.target.classList.add(entry.target.dataset.animation);
+        observer.unobserve(entry.target); // Stop observing after animation is triggered
       }
     });
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersection, {
+    // Create a new IntersectionObserver instance
+    const newObserver = new IntersectionObserver(handleIntersection, {
       rootMargin: "0px",
-      threshold: 0.1,
+      threshold: 0.5, // Trigger when 50% of the element is visible
     });
 
-    const sections = document.querySelectorAll(".animate-on-scroll");
-    
-    sections.forEach((section) => {
-      observer.observe(section); // Observe each section
-    });
+    // Set the observer to state to use it for future updates
+    setObserver(newObserver);
 
-    return () => observer.disconnect();
+    // Cleanup on component unmount
+    return () => {
+      newObserver.disconnect();
+    };
   }, []);
+
+  // Re-observe all elements if the window is resized
+  useEffect(() => {
+    if (observer) {
+      // Re-observe all sections on resize
+      const sections = document.querySelectorAll(".animate-on-scroll");
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    }
+
+    // Listen for window resize event and force observer to recheck visibility
+    const handleResize = () => {
+      const sections = document.querySelectorAll(".animate-on-scroll");
+
+      sections.forEach((section) => {
+        observer.observe(section); // Re-observe sections on resize
+      });
+    };
+
+    // Attach the resize listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup the resize event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [observer]);
 
   return (
     <div className="bg-white overflow-hidden">
@@ -55,7 +88,7 @@ const Home = () => {
       </div>
 
       {/* Projects Section */}
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 animate-on-scroll" data-animation="animate-slide-in-left">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-16 animate-on-scroll">
         <Projects />
       </div>
 
