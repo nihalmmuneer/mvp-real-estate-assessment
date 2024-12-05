@@ -8,12 +8,11 @@ import Experts from "../components/Experts";
 import Info from "../components/Info";
 
 const Home = () => {
-  // Function to add animation class when an element enters the viewport
   const handleIntersection = (entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add(entry.target.dataset.animation); // Add animation class based on data-animation
-        observer.unobserve(entry.target); // Stop observing after animation is triggered
+        entry.target.classList.add(entry.target.dataset.animation); 
+        observer.unobserve(entry.target); 
       }
     });
   };
@@ -21,17 +20,15 @@ const Home = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(handleIntersection, {
       rootMargin: "0px",
-      threshold: 0.5, // Trigger when 50% of the section is visible
+      threshold: 0.1,
     });
 
-    // Get all sections that should have the animation
     const sections = document.querySelectorAll(".animate-on-scroll");
     
     sections.forEach((section) => {
       observer.observe(section); // Observe each section
     });
 
-    // Cleanup observer on component unmount
     return () => observer.disconnect();
   }, []);
 
