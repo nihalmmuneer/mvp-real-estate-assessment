@@ -96,7 +96,7 @@ const Banner = () => {
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-20"></div>
       <div className="absolute left-24 top-40 ">
         <div className="flex flex-col gap-4 lg:gap-20">
-          <h1 className="md:text-3xl sm:text-3xl text-lg font-chillax lg:ml-11 font-semibold text-white">
+          <h1 className="md:text-3xl sm:text-xl text-xl font-chillax lg:ml-11 font-semibold text-white">
             Discover a wide selection of home <br />
             listings in the UAE with Aqarmarket.
           </h1>
