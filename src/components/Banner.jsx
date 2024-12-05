@@ -94,9 +94,9 @@ const Banner = () => {
         className="absolute top-0 w-full h-full object-cover"
       ></video>
       <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-20"></div>
-      <div className="absolute md:left-24 md:top-40  left-10 top-20">
-        <div className="flex flex-col gap-4 md:gap-20">
-          <h1 className="md:text-3xl sm:text-3xl text-lg font-chillax font-semibold text-white">
+      <div className="absolute left-24 top-40 ">
+        <div className="flex flex-col gap-4 lg:gap-20">
+          <h1 className="md:text-3xl sm:text-3xl text-lg font-chillax lg:ml-11 font-semibold text-white">
             Discover a wide selection of home <br />
             listings in the UAE with Aqarmarket.
           </h1>
@@ -160,7 +160,7 @@ const Banner = () => {
                 Rent
               </button>{" "}
             </div>
-            <div className="px-7">
+            <div className="lg:px-7">
               <div className="bg-white py-2 hidden lg:flex items-center px-5  rounded-2xl">
                 <div className="" >
                   <div className="flex flex-col gap-0  items-start relative">

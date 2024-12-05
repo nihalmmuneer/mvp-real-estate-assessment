@@ -51,15 +51,36 @@ const Plan = () => {
 
     const scrollContainer = scrollRef.current;
     scrollContainer.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", checkOverflow);
 
-    checkOverflow(); // Initial check
+    // Initial check for overflow
+    checkOverflow();
+
+    const debounceResize = () => {
+      clearTimeout(window.debounceResizeTimeout);
+      window.debounceResizeTimeout = setTimeout(() => {
+        checkOverflow(); // Check for overflow after resize
+      }, 150); // Debounce time in ms
+    };
+
+    // Add resize event listener with debounce
+    window.addEventListener("resize", debounceResize);
 
     return () => {
       scrollContainer.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", checkOverflow);
+      window.removeEventListener("resize", debounceResize);
     };
-  }, []);
+  }, []); // Empty dependency array ensures the effect only runs once
+
+  useEffect(() => {
+    // Recheck overflow and scroll state on initial load
+    if (scrollRef.current) {
+      const scrollLeft = scrollRef.current.scrollLeft;
+      const scrollWidth = scrollRef.current.scrollWidth;
+      const offsetWidth = scrollRef.current.offsetWidth;
+      setIsPrevDisabled(scrollLeft === 0);
+      setIsNextDisabled(scrollLeft >= scrollWidth - offsetWidth);
+    }
+  }, [isOverflowing]); // This effect runs when `isOverflowing` changes
 
   return (
     <div className="relative mt-6 bg-white">
